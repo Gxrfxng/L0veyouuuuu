@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Gift for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #75b5ff;
+            --secondary-color: #ff7eb3;
+            --bg-gradient: linear-gradient(135deg, #75aaff 0%, #ff7eb3 100%);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: #333;
+        }
+
+        /* --- หน้าล็อกอิน --- */
+        #login-page {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 320px;
+            transition: 0.5s;
+        }
+
+        .icon-lock { font-size: 50px; margin-bottom: 10px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            outline: none;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--primary-color); }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #62a4ef;
+            transform: translateY(-2px);
+        }
+
+        /* --- หน้าเนื้อหา (ซ่อนไว้ตอนแรก) --- */
+        #content-page {
+            display: none; /* ซ่อนไว้ก่อน */
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 350px; /* ย่อขนาดกรอบลงมา */
+            margin: 0 auto;
+        }
+
+        .img-wrapper {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 5px solid #fff;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .caption {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="icon-lock">🔒💖</div>
+        <h2>Password ค้าบบบ</h2>
+        <p style="font-size: 0.9rem; color: #888;">เฉพาะคนพิเศษเท่านั้นที่เข้าได้!</p>
+        <input type="password" id="passInput" placeholder="ชื่อเค้าเองง">
+        <button onclick="unlock()">Okayy</button>
+    </div>
+
+    <div id="content-page">
+        <div class="photo-frame">
+            <div class="img-wrapper">
+                <img src="LOVEproject.png" alt="My Image">
+            </div>
+            <p class="caption">เหนื่อยใช่มั้ยหล่ะ</p>
+            <p style="font-size: 0.8rem; color: #999;">เอากำลังใจมาให้แล้วคั้บบ</p>
+        </div>
+    </div>
+
+    <script>
+        function unlock() {
+            const userInput = document.getElementById('passInput').value;
+            
+            // --- แก้ไขรหัสผ่านตรงนี้ ---
+            const mySecretPassword = "กอฟาง"; 
+
+            if (userInput === mySecretPassword) {
+                // ซ่อนหน้าล็อกอิน และโชว์หน้ารูปภาพ
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('content-page').style.display = 'block';
+            } else {
+                alert("ผิดฮาฟฟ ชื่อเล่นๆ! ❌");
+            }
+        }
+
+        // กด Enter แทนการคลิกปุ่มได้
+        document.getElementById('passInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                unlock();
+            }
+        });
+    </script>
+
+</body>
+</html>
